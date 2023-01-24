@@ -1,0 +1,15 @@
+<div class="margin-container">
+
+  <% if @tasks.count > 0 %>
+    <% @tasks.each do |task| %>
+      <%= link_to task_path(task) do %>
+        <div class="card">
+          <p><%= task.description %></p>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>There's nothing here! ☹️</p>
+  <% end %>
+
+</div>
