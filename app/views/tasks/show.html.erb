@@ -1,0 +1,31 @@
+<div class="margin-container">
+  <h1><%= @task.description %> (<%= @task.points %> points)</h1>
+  <h2><%= @task.category.capitalize %></h2>
+  <h4><%= @task.frequency.capitalize %>
+    <% case @task.frequency %>
+    <% when "weekly" %>
+      <%= @task.start_date.strftime("on %A") %>
+    <% when "monthly" %>
+      <%= @task.start_date.strftime("on the %-d") %> <%# implement -st -nd -rd -th %>
+    <% when "yearly" %>
+      <%= @task.start_date.strftime("on %B %-d") %> <%# implement -st -nd -rd -th %>
+    <% else %>
+
+    <% end %>
+  </h4>
+
+  <div>
+    <%= link_to "Edit",
+      edit_task_path(@task),
+      class: "button-secondary"
+    %>
+  </div>
+
+  <div>
+    <%= link_to "Delete",
+      task_path(@task),
+      class: "button-secondary",
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+  </div>
+</div>
